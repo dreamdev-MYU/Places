@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>haqida</title>
+</head>
+<body>
+ 
+        {% for place in places %}
+        <h1>{{place.name}}</h1>
+        <div class ="ml-3 aligin-items:center">
+            <img  src="https://www.advantour.com/img/uzbekistan/hotels/tashkent/hilton/mini/hall_sm.jpg" width="400px" height="600px">
+        <p>{{place.discription}}
+        </p>
+        </div>
+        {% endfor %}
+
+</body>
+</html>
