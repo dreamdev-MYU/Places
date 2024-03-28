@@ -59,4 +59,6 @@ class ProfileViev(View):
             return redirect('landing')
         return render(request,'users/profile.html',context={"form":form})
 
-        
+class ProfileView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'users/profile_view.html')

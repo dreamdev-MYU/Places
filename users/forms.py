@@ -1,5 +1,5 @@
 from typing import Any
-from django.contrib.auth.models import User
+from .models import User
 from django import forms
 
 class RegisterForm(forms.ModelForm):
@@ -10,7 +10,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model=User
-        fields=['username','first_name','last_name','email','password']
+        fields=['username','first_name','last_name','email','password','photo']
 
 
     def clean_password_confirm(self):
@@ -50,4 +50,4 @@ class LoginForm(forms.Form):
 class ProfileUpdateViev(forms.ModelForm):
     class Meta:
         model=User
-        fields=['username','first_name','last_name','email']
+        fields=['username','first_name','last_name','email','photo']

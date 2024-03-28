@@ -32,7 +32,7 @@
                         </a>
                         {% if user.is_authenticated %}
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'users:profile' %}" style="font-size: larger;">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:profile_view' %}" style="font-size: larger;">Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:logout_page' %}" style="font-size: larger;">Logout</a></li>
                         </ul>
                         {% else %}

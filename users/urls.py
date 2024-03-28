@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterViev,LoginViev,LogoutViev,ProfileViev
+from .views import RegisterViev,LoginViev,LogoutViev,ProfileViev,ProfileView
 app_name='users'
 
 urlpatterns=[
@@ -7,5 +7,6 @@ urlpatterns=[
     path('login_page/', LoginViev.as_view(),name='login_page'),
     path('logout_page/', LogoutViev.as_view(),name='logout_page'),
     path('profile/', ProfileViev.as_view(),name='profile'),
+    path('profile_view/', ProfileView.as_view(),name='profile_view'),
     
 ]

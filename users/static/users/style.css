@@ -1,0 +1,53 @@
+.card {
+    width: 700px; /* Adjust the width of the card */
+    height: 800px; /* Allow the card height to adjust based on content */
+    background-color: peru;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.image img {
+    transition: all 0.5s;
+    height: 250px;
+    width: 250px;
+}
+
+.card:hover .image img {
+    transform: scale(1.1); /* Adjust the scale factor */
+}
+
+.btn {
+    height: 60px; /* Adjust button height */
+    width: 180px; /* Adjust button width */
+    border-radius: 5px; /* Adjust button border radius */
+}
+
+.name {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.idd {
+    font-size: 40px;
+    font-weight: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.idd1 {
+    font-size: 40px;
+}
+
+
+.join {
+    font-size: 40px;
+    color: goldenrod;
+    font-weight: bold;
+}
+
+.date {
+    background-color: #ccc;
+    padding: 5px; /* Add padding for better appearance */
+    border-radius: 5px; /* Add border radius */
+}
