@@ -51,7 +51,7 @@ class ProfileViev(View):
         return render(request,'users/profile.html',context={"form":form})
 
     def post(self,request):
-        form=ProfileUpdateViev(instance=request.user,data=request.POST)
+        form=ProfileUpdateViev(instance=request.user,data=request.POST, files=request.FILES)
 
         if form.is_valid():
             form.save()

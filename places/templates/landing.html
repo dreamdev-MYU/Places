@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+        <body>
+            <div class="place-details">
+               
+                <h1>All Reviews</h1>
+                <hr>
+                {% for review in reviews %}
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <div class="row mt-2 mb-2">
+                    {% if review.user.photo %}
+                    <div class="col-1 me-2">
+                        
+                        <img style="width: 60px; height: 60px; border-radius: 50%;" src="{{ review.user.photo.url }}" alt="user photo">
+                    </div>
+                    {% endif %}
+                    <div class="col-4">
+                        <b>{{ review.user.username }}</b> {{ review.stars_given }} <i>yulduzcha berdi {{ review.created_at }}</i>
+                        <p><br>{{ review.comment_text }}</p>
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </body>
+
+{% endblock %}

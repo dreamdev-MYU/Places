@@ -1,4 +1,4 @@
-from typing import Any
+
 from .models import User
 from django import forms
 
@@ -10,7 +10,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model=User
-        fields=['username','first_name','last_name','email','password','photo']
+        fields=['username','first_name','last_name','email','password','photo', 'phone_number']
 
 
     def clean_password_confirm(self):
@@ -28,6 +28,15 @@ class RegisterForm(forms.ModelForm):
         if len(username)<4 or len(username)>30:
             raise forms.ValidationError('username uzunligi 5 dan katta 30 dan kichik bolishi kerakl')
         return username
+    
+    def clean_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        if len(phone_number)!=13 or not phone_number.startswith('+998'):
+             raise forms.ValidationError('Mobile raqam kiritishda xatolik')
+ 
+
+
+
 
 class LoginForm(forms.Form):
     username=forms.CharField()
@@ -50,4 +59,4 @@ class LoginForm(forms.Form):
 class ProfileUpdateViev(forms.ModelForm):
     class Meta:
         model=User
-        fields=['username','first_name','last_name','email','photo']
+        fields=['username','first_name','last_name','email','photo', 'phone_number']

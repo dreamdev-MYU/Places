@@ -1,20 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>haqida</title>
+    <style>
+        .place-details {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-container {
+            margin-left: 20px;
+        }
+
+        .place-image {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+        }
+
+        .description-container {
+            margin-top: 10px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: block;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
- 
-        {% for place in places %}
-        <h1>{{place.name}}</h1>
-        <div class ="ml-3 aligin-items:center">
-            <img  src="https://www.advantour.com/img/uzbekistan/hotels/tashkent/hilton/mini/hall_sm.jpg" width="400px" height="600px">
-        <p>{{place.discription}}
-        </p>
+    <div class="place-details">
+        <h1>{{ place.name }}</h1>
+        <div class="image-container">
+            <img src="{{ place.image.url }}" class="place-image">
         </div>
-        {% endfor %}
+        <div class="description-container">
+            <p class="description">{{ place.description }}</p>
+<div class="row mb-4">
+    <div class="col-6">
+      
+        <form action="{% url 'places:add_comment' place.id %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary">Leave Comment</button>
+        </form>
+    </div>
+</div>
+            <h1>Reviews</h1>
+            <hr>
+            {% for review in place.reviews.all %}
+            <div class="row mt-2 mb-2">
+                {% if review.user.photo %}
+                <div class="col-1 me-2">
+                    <img style="width: 60px; height: 60px; border-radius: 50%; margin-left:370px;" src="{{ review.user.photo.url }}" alt="user photo">
+                </div>
+                
+                {% endif %}
 
+                <div class="col-4">
+                    <b style="margin-right:10px;">{{review.user.username}}</b> {{review.stars_given}} <i>yulduzcha berdi {{review.created_at}}</i>
+                    <p style="margin-right:150px;"><br>
+                        {{review.comment_text}}
+                    </p><hr>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
-</html>
+
+{% endblock %}
