@@ -1,11 +1,13 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from django.contrib.auth import authenticate,login,logout
-from .forms import RegisterForm,LoginForm,ProfileUpdateViev
+from .forms import RegisterForm,LoginForm,ProfileUpdateview
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-# Create your views here.
-class RegisterViev(View):
+
+
+
+class RegisterView(View):
     def get(self,request):
         form=RegisterForm()
         return render(request,'users/register.html',context={"form":form})
@@ -21,7 +23,7 @@ class RegisterViev(View):
 
         return render(request,'users/register.html',context={"form":form})
 
-class LoginViev(View):
+class Loginview(View):
     def get(self,request):
         form=LoginForm()
         return render(request,'users/login_page.html',context={"form":form})
@@ -38,20 +40,20 @@ class LoginViev(View):
                  return redirect('landing')
         return render(request,'users/login_page.html',context={"form":form})
     
-class LogoutViev(LoginRequiredMixin,View):
+class Logoutview(LoginRequiredMixin,View):
     def get(self,request):
         logout(request)
         messages.success(request,"Siz muvaffaqiyatli logout qildingiz ")
         return redirect('landing')
     
 
-class ProfileViev(View):
+class Profileview(View):
     def get(self,request):
-        form=ProfileUpdateViev(instance=request.user)
+        form=ProfileUpdateview(instance=request.user)
         return render(request,'users/profile.html',context={"form":form})
 
     def post(self,request):
-        form=ProfileUpdateViev(instance=request.user,data=request.POST, files=request.FILES)
+        form=ProfileUpdateview(instance=request.user,data=request.POST, files=request.FILES)
 
         if form.is_valid():
             form.save()

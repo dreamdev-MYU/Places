@@ -56,7 +56,7 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('passwordni raqamda kiriting ')
         return password
     
-class ProfileUpdateViev(forms.ModelForm):
+class ProfileUpdateview(forms.ModelForm):
     class Meta:
         model=User
         fields=['username','first_name','last_name','email','photo', 'phone_number']

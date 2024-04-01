@@ -14,10 +14,10 @@ def places_page(request):
 
 
 
-def haqida(request, id):
+def about(request, id):
     place = get_object_or_404(Places, pk=id)
     form = PlaceCommentForm()
-    return render(request, 'haqida.html', {'place': place, 'form':form})
+    return render(request, 'about.html', {'place': place, 'form':form})
 
 
 
@@ -39,6 +39,6 @@ class AddCommentView(LoginRequiredMixin, View):
                 comment_text = form.cleaned_data['comment_text'],
                 stars_given = form.cleaned_data['stars_given'],
             )
-            return redirect(reverse("places:haqida_page", kwargs={"id":place.id}))
+            return redirect(reverse("places:about_page", kwargs={"id":place.id}))
         
-        return render(request, 'haqida.html', {'place': place, 'form':form})
+        return render(request, 'about.html', {'place': place, 'form':form})

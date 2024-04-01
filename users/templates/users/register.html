@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<title>Ro'yxatdan O'tish Sahifasi</title>
+<title>Register page</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- stil berish -->
 <style>
@@ -53,6 +53,6 @@
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Ro'yxatdan O'tish</button>
+    <button type="submit" class="btn btn-primary">Ro'yxatdan o'tish</button>
 </form>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
- <title>Login Sahifasi</title>
+ <title>Login page</title>
  <!-- stil berish -->
     <style>
         body {
@@ -60,13 +60,13 @@
         }
     </style>
  
-    <h1>Kirish</h1>
+    <h1>Enter</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    <p class="text-center">Hali akkauntingiz yo'qmi? <a href="{% url 'users:register' %}" class="register-link">Ro'yxatdan o'tish</a></p>
+    <p class="text-center">Don't have an account yet? <a href="{% url 'users:register' %}" class="register-link">Register page</a></p>
 
 
 {% endblock %}
