@@ -60,3 +60,22 @@ class ProfileUpdateview(forms.ModelForm):
     class Meta:
         model=User
         fields=['username','first_name','last_name','email','photo', 'phone_number']
+
+
+class ResetPasswordForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput)
+    new_password = forms.CharField(widget=forms.PasswordInput)
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
+
+
+    
+
+    def clean(self):
+        new_password = self.cleaned_data['new_password']
+        confirm_password = self.cleaned_data=['confirm_password']
+
+        if new_password !=confirm_password:
+            raise forms.ValidationError(" Nimadur Xato ketdi qaytadan urining!")
+        
+        return self.cleaned_data
+    

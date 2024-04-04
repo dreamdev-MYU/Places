@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from django.contrib.auth import authenticate,login,logout
-from .forms import RegisterForm,LoginForm,ProfileUpdateview
+from .forms import RegisterForm,LoginForm,ProfileUpdateview, ResetPasswordForm
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import User
 
 
 
@@ -64,3 +65,33 @@ class Profileview(View):
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'users/profile_view.html')
+    
+
+class ResetPasswordView(LoginRequiredMixin, View):
+    def get(self,request):
+        form = ResetPasswordForm()
+        
+        return render(request, 'users/reset_password.html', {"form":form}) 
+    
+    def post(self,request):
+        form = ResetPasswordForm(request.POST)
+        user = request.user
+        if form.is_valid():
+            if checkpassword(user, form.cleaned_data['old_password']):
+                user.set_password(form.cleaned_data['confirm_password'])
+                user.save()
+                return redirect("users:profile_view")
+
+            else:
+                return render(request, 'users/reset_password.html', {"form":form})
+       
+        return render(request, 'users/reset_password.html', {"form":form})
+        
+
+def checkpassword(user, password):
+    return user.check_password(password)
+
+class UserView(LoginRequiredMixin, View):
+    def get(self, request):
+        users = User.objects.exclude(username = request.user.username)
+        return render(request, 'users/users_list.html', {"users":users})

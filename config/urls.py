@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',landing_page,name='landing'),
     path('base/',base_page, name='base'),
+    path('home/',HomeView.as_view(), name='home'),
     path('users/',include('users.urls')),
     path('places/',include('places.urls')),
 

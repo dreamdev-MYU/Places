@@ -19,6 +19,9 @@
             <div class="d-flex mt-4">
                 <a href="{% url 'users:profile' %}" class="btn btn-dark" style="font-size: 22px; padding: 10px 20px; border-radius: 10px;">Edit Profile</a>
             </div>
+            <div class="d-flex mt-4">
+                <a href="{% url 'users:reset_password' %}" class="btn btn-dark" style="font-size: 20px; padding: 10px 20px; border-radius: 10px;">Reset Password</a>
+            </div>
             
             <div class="px-2 rounded mt-4 date">
                 <span class="join">Joined {{user.date_joined|date:"M d, Y"}}</span>
