@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from .forms import RegisterForm,LoginForm,ProfileUpdateview, ResetPasswordForm
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import User
+from .models import User, FriendRequest
 
 
 
@@ -94,4 +94,35 @@ def checkpassword(user, password):
 class UserView(LoginRequiredMixin, View):
     def get(self, request):
         users = User.objects.exclude(username = request.user.username)
-        return render(request, 'users/users_list.html', {"users":users})
+        friend_requests = FriendRequest.objects.filter(to_user = request.user)
+        
+        return render(request, 'users/users_list.html', {"users":users, "friend_requests":friend_requests})
+    
+
+
+class MyNetworksView(LoginRequiredMixin, View):
+    def get(self, request):
+        networks = FriendRequest.objects.filter(to_user=request.user)
+
+        return render(request, 'users/networks.html', {"networks":networks})
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+class SendFriendRequestView(LoginRequiredMixin, View):
+    def get(self, request, id):
+        to_user = User.objects.get(id=id)
+        from_user = request.user
+
+        FriendRequest.objects.get_or_create(from_user=from_user, to_user=to_user)
+        return redirect("users:list")

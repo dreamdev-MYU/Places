@@ -2,26 +2,26 @@
 {% load crispy_forms_tags %}
 
 {%block title%}
-
+users page
 
 {% endblock %}
 {% block content %}
-<h1> Users page</h1>
+<h1> My Networks page</h1>
 
-{% for friend in users %}
+{% for network in networks %}
 <div class="row">
     <div class="col-2" style="margin-top: 15px;">
-        <img src="{{friend.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
+        <img src="{{network.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
     </div>
     
     <div class="col-3">
         <br><br>
-        <p ><b>{{friend.username}}</b></p>
-        <p><i>{{friend.email}}</i></p>
+        <p ><b>{{network.username}}</b></p>
+        <p><i>{{network.email}}</i></p>
     </div>
     <div class="col">
 
-        <a href="{% url 'users:send_request' friend.id %}" class="btn btn-outline-primary" >Send Request</a>
+        <a  class="btn btn-outline-primary" >Send Request</a>
         {% comment %} <button class="btn btn-outline-secondary">Ignore </button>
         <button class="btn btn-outline-primary">Accept </button> {% endcomment %}
     </div>
