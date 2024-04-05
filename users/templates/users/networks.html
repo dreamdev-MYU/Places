@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {%block title%}
-users page
+
 
 {% endblock %}
 {% block content %}
@@ -11,23 +11,57 @@ users page
 {% for network in networks %}
 <div class="row">
     <div class="col-2" style="margin-top: 15px;">
-        <img src="{{network.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
+        <img src="{{network.from_user.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
     </div>
     
     <div class="col-3">
         <br><br>
-        <p ><b>{{network.username}}</b></p>
-        <p><i>{{network.email}}</i></p>
+        <p ><b>{{network.from_user.username}}</b></p>
+        <p><i>{{network.from_user.email}}</i></p>
     </div>
     <div class="col">
 
-        <a  class="btn btn-outline-primary" >Send Request</a>
-        {% comment %} <button class="btn btn-outline-secondary">Ignore </button>
-        <button class="btn btn-outline-primary">Accept </button> {% endcomment %}
+  
+        <button class="btn btn-outline-secondary">Ignore </button>
+        <a href="{% url 'users:accept_friend' network.id %}" class="btn btn-outline-primary">Accept </a> 
     </div>
 
 </div>
 {% endfor %}
+
+
+
+
+
+<h1> My Networks page</h1>
+
+{% for friend in user.friends.all %}
+<div class="row">
+    <div class="col-2" style="margin-top: 15px;">
+        <img src="{{friend.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
+    </div>
+    
+    <div class="col-3">
+        <br><br>
+        <p ><b>{{friend.username}}</b></p>
+        <p><i>{{friend.email}}</i></p>
+    </div>
+    <div class="col">
+
+  
+        <button class="btn btn-outline-danger">Remove</button>
+       
+    </div>
+
+</div>
+{% endfor %}
+
+
+
+
+
+
+
 
 
 

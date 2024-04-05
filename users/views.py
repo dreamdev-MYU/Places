@@ -102,11 +102,23 @@ class UserView(LoginRequiredMixin, View):
 
 class MyNetworksView(LoginRequiredMixin, View):
     def get(self, request):
-        networks = FriendRequest.objects.filter(to_user=request.user)
+        networks = FriendRequest.objects.filter(to_user=request.user, is_accepted = False)
 
         return render(request, 'users/networks.html', {"networks":networks})
     
+class AcceptFriendRequestView(LoginRequiredMixin, View):
+    def get(self, request, id):
+        friend_request = FriendRequest.objects.get(id=id)
+        from_user = friend_request.from_user
 
+        main_user = request.user
+        main_user.friends.add(from_user)
+        from_user.friends.add(main_user)
+
+        friend_request.is_accepted = True
+        friend_request.save()
+
+        return redirect ("users:networks.list")
 
 
 

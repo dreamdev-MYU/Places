@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView,Loginview,Logoutview,Profileview,ProfileView,ResetPasswordView,UserView,SendFriendRequestView, MyNetworksView
+from .views import RegisterView,Loginview,Logoutview,Profileview,ProfileView,ResetPasswordView,UserView,SendFriendRequestView, MyNetworksView,AcceptFriendRequestView
 app_name='users'
 
 urlpatterns=[
@@ -14,6 +14,7 @@ urlpatterns=[
     #users friend request logic
      path('send_request/<int:id>/', SendFriendRequestView.as_view(),name='send_request'),
      path('networks/', MyNetworksView.as_view(),name='networks'),
+     path('accept_friend/<int:id>/', AcceptFriendRequestView.as_view(),name='accept_friend'),
 
     
 ]
