@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="container">
+    <h1> Users page</h1>
+
+{% for friend in users %}
+    <div class="row">
+        <hr>
+        <div class="col-2" style="margin-top: 23px;">
+            <img src="{{friend.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
+        </div>  
+        <div class="col-3">
+            <br><br>
+            <p ><b>{{friend.username}}</b></p>
+            <p><i>{{friend.email}}</i></p>
+        </div>
+        <div class="col">
+
+            {% if friend in friend_requests %}
+            <button class="btn btn-outline-primary" disabled style="margin-top: 60px;" > Sent</button>
+            {% else %}
+            <a href="{% url 'users:send-request' friend.id %}" class="btn btn-outline-primary" style="margin-top: 60px;"  >Send Request</a>
+            {% endif %}
+
+        </div>
+        <hr>
+    </div>
+{% endfor %}
+</div>
+
+
+
+{% endblock %}
+

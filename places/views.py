@@ -5,6 +5,7 @@ from django.views import View
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 def places_page(request):
     places = Places.objects.all()  
     search_query = request.GET.get('q', '')
@@ -13,13 +14,10 @@ def places_page(request):
     return render(request, 'places.html', {"places": places, "search_query": search_query})
 
 
-
 def about(request, id):
     place = get_object_or_404(Places, pk=id)
     form = PlaceCommentForm()
     return render(request, 'about.html', {'place': place, 'form':form})
-
-
 
 
 
@@ -39,6 +37,6 @@ class AddCommentView(LoginRequiredMixin, View):
                 comment_text = form.cleaned_data['comment_text'],
                 stars_given = form.cleaned_data['stars_given'],
             )
-            return redirect(reverse("places:about_page", kwargs={"id":place.id}))
+            return redirect(reverse("places:about-page", kwargs={"id":place.id}))
         
         return render(request, 'about.html', {'place': place, 'form':form})

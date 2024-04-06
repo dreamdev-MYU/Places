@@ -1,69 +1,62 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{%block title%}
-
-
-{% endblock %}
 {% block content %}
-<h1> My Networks page</h1>
 
-{% for network in networks %}
-<div class="row">
-    <div class="col-2" style="margin-top: 15px;">
-        <img src="{{network.from_user.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
-    </div>
+<div class="container">
+    <div class="container">
     
-    <div class="col-3">
-        <br><br>
-        <p ><b>{{network.from_user.username}}</b></p>
-        <p><i>{{network.from_user.email}}</i></p>
-    </div>
-    <div class="col">
-
-  
-        <button class="btn btn-outline-secondary">Ignore </button>
-        <a href="{% url 'users:accept_friend' network.id %}" class="btn btn-outline-primary">Accept </a> 
-    </div>
-
+        <h1> Requests</h1>
+        
+        {% for network in networks %}
+            <div class="row">
+                <div class="col-2" style="margin-top: 15px;">
+                    <img src="{{network.from_user.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
+                </div>
+                
+                <div class="col-3">
+                    <br><br>
+                    <p ><b>{{network.from_user.username}}</b></p>
+                    <p><i>{{network.from_user.email}}</i></p>
+                </div>
+                <div class="col">
+        
+            
+                <a href="{% url 'users:ignore-friend' network.id %}" class="btn btn-outline-secondary" style="margin-top: 60px;">Ignore </a> 
+                <a href="{% url 'users:accept-friend' network.id %}" class="btn btn-outline-primary" style="margin-top:60px">Accept </a> 
+                </div>
+        
+            </div>
+        {% endfor %}
+        </div>
+        
+        
+        
+        
+        
+        <div class="container">
+            <h1 style="margin-top: 90px;"> My Friends</h1>
+        {% for friend in user.friends.all %}
+        <div class="row">
+            <div class="col-2" style="margin-top: 15px;">
+                <img src="{{friend.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
+            </div>           
+            <div class="col-3">
+                <br><br>
+                <p ><b>{{friend.username}}</b></p>
+                <p><i>{{friend.email}}</i></p>
+            </div>
+            <div class="col">
+        
+          
+                <a href="{% url 'users:delete-friend' friend.id %}" class="btn btn-outline-danger" style="margin-top: 60px;">Remove </a> 
+               
+            </div>
+        
+        </div>
+        {% endfor %}
+        
+        </div>
+        <hr>
 </div>
-{% endfor %}
-
-
-
-
-
-<h1> My Networks page</h1>
-
-{% for friend in user.friends.all %}
-<div class="row">
-    <div class="col-2" style="margin-top: 15px;">
-        <img src="{{friend.photo.url}}" alt="" style="width:180px; height:180px; border-radius:50%">
-    </div>
-    
-    <div class="col-3">
-        <br><br>
-        <p ><b>{{friend.username}}</b></p>
-        <p><i>{{friend.email}}</i></p>
-    </div>
-    <div class="col">
-
-  
-        <button class="btn btn-outline-danger">Remove</button>
-       
-    </div>
-
-</div>
-{% endfor %}
-
-
-
-
-
-
-
-
-
-
 {% endblock %}
-

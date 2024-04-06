@@ -46,7 +46,7 @@
     <div class="row mb-4">
         <div class="col-6">
           
-            <form action="{% url 'places:add_comment' place.id %}" method="post">
+            <form action="{% url 'places:add-comment' place.id %}" method="post">
                 {% csrf_token %}
                 {{form.as_p}}
                 <button type="submit" class="btn btn-primary">Leave Comment</button>

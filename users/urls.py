@@ -1,20 +1,28 @@
 from django.urls import path
-from .views import RegisterView,Loginview,Logoutview,Profileview,ProfileView,ResetPasswordView,UserView,SendFriendRequestView, MyNetworksView,AcceptFriendRequestView
+from .views import (RegisterView,Loginview,Logoutview,
+                    Profileview,ProfileView,ResetPasswordView,
+                    UserView,SendFriendRequestView, MyNetworksView,
+                    AcceptFriendRequestView, IgnoreFriendRequestView,
+                    DeleteFromFriendsView)
+
+
 app_name='users'
 
 urlpatterns=[
     path('register/',RegisterView.as_view(),name='register'),
-    path('login_page/', Loginview.as_view(),name='login_page'),
-    path('logout_page/', Logoutview.as_view(),name='logout_page'),
+    path('login-page/', Loginview.as_view(),name='login-page'),
+    path('logout-page/', Logoutview.as_view(),name='logout-page'),
     path('profile/', Profileview.as_view(),name='profile'),
-    path('profile_view/', ProfileView.as_view(),name='profile_view'),
-    path('reset_password/', ResetPasswordView.as_view(),name='reset_password'),
+    path('profile-view/', ProfileView.as_view(),name='profile-view'),
+    path('reset-password/', ResetPasswordView.as_view(),name='reset-password'),
     path('list/', UserView.as_view(),name='list'),
 
     #users friend request logic
-     path('send_request/<int:id>/', SendFriendRequestView.as_view(),name='send_request'),
+     path('send-request/<int:id>/', SendFriendRequestView.as_view(),name='send-request'),
      path('networks/', MyNetworksView.as_view(),name='networks'),
-     path('accept_friend/<int:id>/', AcceptFriendRequestView.as_view(),name='accept_friend'),
+     path('accept-friend/<int:id>/', AcceptFriendRequestView.as_view(),name='accept-friend'),
+     path('ignore-friend/<int:id>/', IgnoreFriendRequestView.as_view(),name='ignore-friend'),
+     path('delete-friend/<int:id>/', DeleteFromFriendsView.as_view(),name='delete-friend'),
 
     
 ]

@@ -28,14 +28,13 @@
                         <a class="nav-link active" aria-current="page" href="{% url  'users:list' %}" style="font-size: larger;"> Users </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url  'places:places_page' %}" style="font-size: larger;">Places</a>
+                        <a class="nav-link active" aria-current="page" href="{% url  'places:places-page' %}" style="font-size: larger;">Places</a>
                     </li>
-                    <li class="nav-item">
+                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url  'users:networks' %}" style="font-size: larger;">My Network</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" style="font-size: larger;"></a>
-                    </li>
+
+
                 </ul>
                 <ul class="navbar-nav me-2 mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
@@ -44,12 +43,12 @@
                         </a>
                         {% if user.is_authenticated %}
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'users:profile_view' %}" style="font-size: larger;">Profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'users:logout_page' %}" style="font-size: larger;">Logout</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:profile-view' %}" style="font-size: larger;">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:logout-page' %}" style="font-size: larger;">Logout</a></li>
                         </ul>
                         {% else %}
                  
-                        <li><a class="dropdown-item" href="{% url 'users:login_page' %}" style="font-size: larger;">Login</a></li>
+                        <li><a class="dropdown-item" href="{% url 'users:login-page' %}" style="font-size: larger;">Login</a></li>
                         </ul>
                         {% endif %}
                     </li>
